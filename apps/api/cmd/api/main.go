@@ -6,15 +6,18 @@ import (
 	"time"
 
 	"github.com/jonathantrevino/portfolios.now/apps/api/internal/httpx"
+	"github.com/jonathantrevino/portfolios.now/apps/api/internal/submit"
 )
 
 func main() {
 
-	// create routes
 	router := http.NewServeMux()
 	router.HandleFunc("GET /health", func(w http.ResponseWriter, r *http.Request) {
 		httpx.WriteJSON(w, 200, map[string]string{"status": "ok"})
 	})
+
+	// register extra routes
+	submit.RegisterRoutes(router)
 
 	// set up server
 	s := &http.Server{
