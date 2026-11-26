@@ -4,10 +4,16 @@ import { Link } from "lucide-react";
 import { Input } from "../../components/Input";
 import { StepIndicator } from "../../components/StepIndicator";
 import { Button } from "../../components/Button";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type StepHeaderProps = {
   title: string;
   description: string;
+};
+
+type SubmitStepProps = {
+  onNext: () => void;
+  onBack?: () => void;
 };
 
 function StepHeader({ title, description }: StepHeaderProps) {
@@ -24,14 +30,18 @@ function StepHeader({ title, description }: StepHeaderProps) {
   );
 }
 
-function StepSubmitPortfolio() {
+function StepSubmitPortfolio({ onNext }: SubmitStepProps) {
+  function handleSubmit(e: any) {
+    e.preventDefault();
+    onNext();
+  }
   return (
     <div>
       <StepHeader
         title="Submit your portfolio"
         description="Paste the link to your portfolio. We scan it and fill in your details, and you can check everything before it goes live."
       />
-      <form className="pt-8">
+      <form className="pt-8" onSubmit={(e) => handleSubmit(e)}>
         <div className="flex items-end gap-2.5">
           <Input
             label="Portfolio URL"
@@ -39,7 +49,7 @@ function StepSubmitPortfolio() {
             placeholder="https://www.example.com or example.com"
             className="flex-1"
           />
-          <Button>Submit Portfolio</Button>
+          <Button type="submit">Submit Portfolio</Button>
         </div>
       </form>
     </div>
@@ -47,10 +57,21 @@ function StepSubmitPortfolio() {
 }
 
 export default function page() {
+  const steps = [
+    <StepSubmitPortfolio onNext={() => setCurrentStep(currentStep + 1)} />,
+    <StepSubmitPortfolio onNext={() => setCurrentStep(currentStep + 1)} />,
+    <StepSubmitPortfolio onNext={() => setCurrentStep(currentStep + 1)} />,
+  ];
+  const [currentStep, setCurrentStep] = useState<number>(0);
+
   return (
     <div className="space-y-4">
-      <StepIndicator steps={3} currentStep={0} label="Paste Your Link" />
-      <StepSubmitPortfolio />
+      <StepIndicator
+        steps={steps.length}
+        currentStep={currentStep}
+        label="Paste Your Link"
+      />
+      {steps[currentStep]}
     </div>
   );
 }
