@@ -68,6 +68,10 @@
   --color-code-selector: #a9b9ff;
   --color-code-property: #f4c38a;
   --color-code-value: #9fddb0;
+
+  --text-hero: clamp(2.25rem, 4.5vw, 3.5rem);
+  --text-hero--line-height: 1.08;
+  --text-hero--letter-spacing: -0.03em;
 }
 
 @layer base {
