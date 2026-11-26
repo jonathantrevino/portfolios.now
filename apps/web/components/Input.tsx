@@ -48,7 +48,7 @@ export function Input({
         className={[
           "flex items-center gap-2.5 rounded-xl bg-white px-4",
           "focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-brand",
-          error ? "border-2 border-error" : "border border-line",
+          error ? "border border-error" : "border border-line",
           trailing ? "pr-1.5" : "",
         ].join(" ")}
       >
