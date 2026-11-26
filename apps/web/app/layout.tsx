@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} max-w-360 mx-auto`}
+      className={`${inter.variable} ${bricolage.variable} ${plexMono.variable} max-w-300 mx-auto`}
     >
       <body>{children}</body>
     </html>
