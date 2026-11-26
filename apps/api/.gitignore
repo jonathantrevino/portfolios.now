@@ -1,0 +1,24 @@
+# Build output
+tmp/
+bin/
+bootstrap
+*.zip
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Tests
+coverage.out
+*.test
+
+# Terraform
+infra/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!example.tfvars
+
+# OS
+.DS_Store
